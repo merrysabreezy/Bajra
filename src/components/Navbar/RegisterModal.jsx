@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { registerRequest } from "../../actions";
+import history from "../../config/history";
 
 class RegisterModal extends Component {
   state = {
@@ -39,6 +40,7 @@ class RegisterModal extends Component {
   };
 
   render() {
+    console.log(history);
     return (
       <Modal
         {...this.props}
