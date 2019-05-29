@@ -3,14 +3,18 @@ import { Modal, Button, Form, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { registerRequest } from "../../actions";
 import history from "../../config/history";
+import { bindActionCreators } from "C:/Users/bulls/AppData/Local/Microsoft/TypeScript/3.4.5/node_modules/redux";
 
 class RegisterModal extends Component {
-  state = {
-    name: "",
-    email: "",
-    password: "",
-    c_password: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      c_password: ""
+    };
+  }
 
   changeName(event) {
     this.setState({ name: event.target.value });
@@ -30,7 +34,7 @@ class RegisterModal extends Component {
   }
 
   submitForm = () => {
-    this.props.registerRequest(
+    this.props.actions.registerRequest(
       this.state.name,
       this.state.email,
       this.state.password,
@@ -40,7 +44,9 @@ class RegisterModal extends Component {
   };
 
   render() {
-    console.log(history);
+    console.log({ ...this.props });
+    console.log(this.props);
+
     return (
       <Modal
         {...this.props}
@@ -120,7 +126,12 @@ const mapStateToProps = state => {
     data: state.bajra.registration
   };
 };
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators({ registerRequest }, dispatch)
+  };
+};
 export default connect(
   mapStateToProps,
-  { registerRequest }
+  mapDispatchToProps
 )(RegisterModal);
