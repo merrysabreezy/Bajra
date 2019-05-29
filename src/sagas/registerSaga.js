@@ -1,6 +1,7 @@
 import { RegisterActionTypes } from "../actionTypes";
 import { take, call, put } from "redux-saga/effects";
 import { RegisterService } from "../services/RegisterService";
+import history from "../config/history";
 
 export function* watchRegisterRequest() {
   while (true) {
@@ -13,7 +14,7 @@ export function* watchRegisterRequest() {
       password: password,
       c_password: c_password
     };
-    console.log("saga", params);
+    // console.log("saga", params);
     const list = yield call(RegisterService.doRegister, params);
     if (list) {
       yield put({
@@ -28,5 +29,9 @@ export function* watchRegisterRequest() {
         loading: false
       });
     }
+
+    history.push("/home/1");
+    console.log(history);
+    //history.push("/registered");
   }
 }

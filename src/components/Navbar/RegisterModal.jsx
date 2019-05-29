@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { registerRequest } from "../../actions";
+import history from "../../config/history";
+import { bindActionCreators } from "redux";
 
 class RegisterModal extends Component {
   state = {
@@ -39,6 +41,7 @@ class RegisterModal extends Component {
   };
 
   render() {
+    console.log(history);
     return (
       <Modal
         {...this.props}
@@ -118,7 +121,14 @@ const mapStateToProps = state => {
     data: state.bajra.registration
   };
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators({ registerRequest }, dispatch)
+  };
+};
+
 export default connect(
   mapStateToProps,
-  { registerRequest }
+  mapDispatchToProps
 )(RegisterModal);
