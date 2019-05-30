@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { registerRequest } from "../../actions";
-import history from "../../config/history";
-import { bindActionCreators } from "C:/Users/bulls/AppData/Local/Microsoft/TypeScript/3.4.5/node_modules/redux";
+import { bindActionCreators } from "redux";
 
 class RegisterModal extends Component {
   constructor(props) {
@@ -44,9 +43,6 @@ class RegisterModal extends Component {
   };
 
   render() {
-    console.log({ ...this.props });
-    console.log(this.props);
-
     return (
       <Modal
         {...this.props}
@@ -108,6 +104,8 @@ class RegisterModal extends Component {
               type="submit"
               onClick={event => {
                 this.submitForm(event);
+
+                // console.log("hit", event.target);
               }}
             >
               Register

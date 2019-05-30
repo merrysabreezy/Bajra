@@ -29,7 +29,7 @@ export function* watchRegisterRequest() {
         loading: false
       });
     }
-
-    history.push("/home/1");
+    console.log(history);
+    history.replace("/home/");
   }
 }
