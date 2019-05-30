@@ -5,16 +5,14 @@ import history from "../config/history";
 
 export function* watchRegisterRequest() {
   while (true) {
-    const { name, email, password, c_password } = yield take(
-      RegisterActionTypes.REGISTER_REQUEST
-    );
-    const params = {
-      name: name,
-      email: email,
-      password: password,
-      c_password: c_password
-    };
-    // console.log("saga", params);
+    const { params } = yield take(RegisterActionTypes.REGISTER_REQUEST);
+    // const params = {
+    //   name: name,
+    //   email: email,
+    //   password: password,
+    //   c_password: c_password
+    // };
+    console.log("saga", params);
     const list = yield call(RegisterService.doRegister, params);
     if (list) {
       yield put({
@@ -30,6 +28,6 @@ export function* watchRegisterRequest() {
       });
     }
     console.log(history);
-    history.replace("/home/");
+    // history.replace("/home/");
   }
 }

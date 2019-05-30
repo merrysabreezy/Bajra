@@ -21,6 +21,7 @@ class RegisterModal extends Component {
   }
 
   changeEmail(event) {
+    console.log(event.target.value);
     this.setState({ email: event.target.value });
   }
 
@@ -33,12 +34,8 @@ class RegisterModal extends Component {
   }
 
   submitForm = () => {
-    this.props.actions.registerRequest(
-      this.state.name,
-      this.state.email,
-      this.state.password,
-      this.state.c_password
-    );
+    const { name, email, password, c_password } = this.state;
+    this.props.actions.registerRequest({ name, email, password, c_password });
     console.log("submit", this.props);
   };
 

@@ -8,8 +8,8 @@ function doRegister(params) {
 
       return response.data;
     })
-    .catch(e => {
-      return e;
+    .catch(error => {
+      console.log("error", error);
     });
 
   return res;
